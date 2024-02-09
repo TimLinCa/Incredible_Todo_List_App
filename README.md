@@ -33,7 +33,7 @@ Android Virtual Device
 
 ## Step 5: Create a new application
 1. Open powershell and change directory to the folder where the application will be created.
-2. Run commend "npx react-native@latest init {project name}}"
+2. Run commend "npx react-native@latest init {project name}"
 
 ## Step 6: Create a new virtual device
 1. Open Android studio
