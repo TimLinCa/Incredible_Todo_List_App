@@ -3,33 +3,41 @@
  *
  * @format
  */
-
+import 'react-native-gesture-handler';
 import React from 'react';
-import {
-  SafeAreaView,
-} from 'react-native';
-import ToDoList from './components/ToDoList';
-import ToDoForm from './components/ToDoForm';
-
-
+import HomeScreen from './src/screens/HomeScreen';
+import AboutScreen from './src/screens/AboutScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import MainLayout from './src/layouts/MainLayout';
 
 function App() {
+  const Stack = createStackNavigator();
 
-  const addTask = (task) => {
-    setTasks([...tasks, task]);
+  const ShowHomeScreen = () => {
+    return (
+      <MainLayout>
+        <HomeScreen></HomeScreen>
+      </MainLayout>
+    );
   };
 
+  const ShowAboutScreen = () => {
+    return (
+      <MainLayout>
+        <AboutScreen></AboutScreen>
+      </MainLayout>
+    );
+  };
 
-  const [tasks, setTasks] = React.useState([
-    'Do laundry',
-    'Go to gym',
-    'Walk dog',
-  ]);
   return (
-    <SafeAreaView>
-      <ToDoList items={tasks}></ToDoList>
-      <ToDoForm addTask={addTask}></ToDoForm>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
+        <Stack.Screen name="About1" component={AboutScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
