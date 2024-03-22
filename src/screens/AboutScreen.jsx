@@ -1,8 +1,22 @@
 import { StyleSheet, Pressable, View, Text, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import customData from '../../app.json';
 import MainLayout from '../layouts/MainLayout';
 function AboutScreen() {
+
+    const [chucknorris, setChucknorris] = React.useState('')
+
+
+    useEffect(() => {
+        async function getChucknorris() {
+            const response = await fetch('http://10.0.0.153:3333/fact');
+            const data = await response.json();
+            setChucknorris(data.fact);
+        }
+
+        getChucknorris();
+    }, []);
+
 
     const getCurrentDate = () => {
 
@@ -19,6 +33,7 @@ function AboutScreen() {
                 <Text style={styles.taskText}>{customData.name}</Text>
                 <Text style={styles.taskText}>HuiEn Lin</Text>
                 <Text style={styles.taskText}>{getCurrentDate()}</Text>
+                <Text style={styles.taskText}>{chucknorris}</Text>
             </>
         </MainLayout>
 
